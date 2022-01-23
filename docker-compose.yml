@@ -1,0 +1,17 @@
+version: '3'
+services: 
+  react-app: 
+    build: 
+      # wijs pad aan met context
+      context: .
+      dockerfile: Dockerfile.dev
+    ports: 
+      - "3000:3000"
+    volumes: 
+      - /app/node_modules
+      - .:/app
+    # voorkom dat react-app direct afsluit na docker-comppose up
+    stdin_open: true
+    # detecteer wijzigingen in windows
+    environment:
+    - CHOKIDAR_USEPOLLING=true
